@@ -10,6 +10,8 @@ A collection of practical SOC projects built while transitioning from **10+ year
 
 **Profile:** [github.com/manusmart2](https://github.com/manusmart2)
 
+📋 **[Placeholder checklist →](PLACEHOLDERS.md)** — Track lab work and evidence still needed
+
 ---
 
 ## Priority Projects (Start Here)
