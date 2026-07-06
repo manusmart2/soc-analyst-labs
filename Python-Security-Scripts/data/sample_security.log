@@ -1,0 +1,9 @@
+2025-03-15 08:00:01 EventID=4624 Account Name: jsmith Source Network Address: 10.0.1.50 Logon Type: 2
+2025-03-15 08:12:33 EventID=4625 Account Name: jsmith Source Network Address: 185.220.101.45 Logon Type: 3
+2025-03-15 08:12:40 EventID=4625 Account Name: admin Source Network Address: 185.220.101.45 Logon Type: 3
+2025-03-15 08:45:00 EventID=4688 Account Name: jsmith New Process Name: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe
+2025-03-15 08:45:01 EventID=4688 Account Name: jsmith New Process Name: C:\Windows\System32\cmd.exe
+2025-03-15 09:00:00 EventID=4720 Account Name: evil_admin TargetUserName: evil_admin SubjectUserName: jsmith
+2025-03-15 09:15:00 EventID=7045 Service Name: EvilService ServiceFileName: C:\Users\Public\malware.exe
+2025-03-15 10:30:00 EventID=4624 Account Name: admin Source Network Address: 10.0.1.100 Logon Type: 10
+2025-03-15 11:00:00 EventID=4672 Account Name: admin Special Privileges: SeDebugPrivilege

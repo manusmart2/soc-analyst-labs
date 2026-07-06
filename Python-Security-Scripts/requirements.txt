@@ -1,0 +1,2 @@
+# Python Security Scripts - no external dependencies required
+# virustotal_lookup.py uses stdlib urllib only

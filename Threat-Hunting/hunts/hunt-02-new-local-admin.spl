@@ -1,0 +1,14 @@
+# Hunt: New Local Administrator Accounts
+# Hypothesis: Attackers create local admin accounts for persistence
+# MITRE: T1136.001
+
+index=wineventlog EventCode=4720
+| search TargetUserName="*admin*" OR MemberName="*Administrators*"
+| table _time, host, TargetUserName, SubjectUserName, SubjectLogonId
+| sort -_time
+
+# Correlate with group membership changes
+| append [
+    search index=wineventlog EventCode=4732 MemberName="*Administrators*"
+    | table _time, host, TargetUserName, MemberName, SubjectUserName
+]

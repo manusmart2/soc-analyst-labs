@@ -1,0 +1,11 @@
+# Detection: After-Hours Successful Login
+# MITRE ATT&CK: T1078 - Valid Accounts
+# Severity: Medium
+# Data Source: Windows Security Event Log (Event ID 4624)
+
+index=wineventlog EventCode=4624
+| eval hour=strftime(_time, "%H")
+| where hour < 6 OR hour > 22
+| table _time, host, Account_Name, src_ip, Logon_Type, hour
+| eval severity="medium"
+| eval mitre_technique="T1078"

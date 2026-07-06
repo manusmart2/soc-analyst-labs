@@ -1,0 +1,9 @@
+# Hunt: Encoded PowerShell Commands
+# Hypothesis: Attackers use base64-encoded PowerShell to evade signature detection
+# MITRE: T1059.001
+
+index=sysmon EventCode=1 Image="*\\powershell.exe"
+  (CommandLine="*-enc*" OR CommandLine="*-EncodedCommand*"
+   OR CommandLine="*FromBase64String*" OR CommandLine="*IEX*")
+| table _time, host, User, CommandLine, ParentImage, ParentCommandLine
+| sort -_time

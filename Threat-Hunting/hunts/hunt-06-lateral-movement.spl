@@ -1,0 +1,15 @@
+# Hunt: Lateral Movement via SMB
+# Hypothesis: Attackers pivot between hosts using SMB admin shares
+# MITRE: T1021.002
+
+index=sysmon EventCode=3 DestinationPort=445
+| stats dc(destination) AS unique_targets, count BY host, User, Image
+| where unique_targets > 3
+| sort -unique_targets
+
+# Cross-reference with network logon events
+| join type=left host, User [
+    search index=wineventlog EventCode=4624 Logon_Type=3
+    | stats count AS network_logons BY host, Account_Name
+    | rename Account_Name AS User
+]

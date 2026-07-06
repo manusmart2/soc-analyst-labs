@@ -1,0 +1,11 @@
+# Detection: Multiple Failed Logins
+# MITRE ATT&CK: T1110 - Brute Force
+# Severity: Medium
+# Data Source: Windows Security Event Log (Event ID 4625)
+
+index=wineventlog EventCode=4625
+| stats count AS failed_attempts BY Account_Name, host, src_ip
+| where failed_attempts > 5
+| eval severity="medium"
+| eval mitre_technique="T1110"
+| table host, Account_Name, src_ip, failed_attempts, severity, mitre_technique

@@ -1,0 +1,10 @@
+# Detection: Disabled Account Login Attempt
+# MITRE ATT&CK: T1078 - Valid Accounts
+# Severity: High
+# Data Source: Windows Security Event Log (Event ID 4625, Sub Status 0xC0000072)
+
+index=wineventlog EventCode=4625 Sub_Status=0xC0000072
+| table _time, host, Account_Name, src_ip, Sub_Status, Status
+| eval severity="high"
+| eval mitre_technique="T1078"
+| eval note="Account referenced is disabled"

@@ -1,0 +1,7 @@
+# Hunt: WMI Process Execution
+# Hypothesis: Attackers use WMI for remote execution and lateral movement
+# MITRE: T1047
+
+index=sysmon EventCode=1 ParentImage="*\\WmiPrvSE.exe"
+| stats count BY host, User, Image, CommandLine, ParentImage
+| sort -count

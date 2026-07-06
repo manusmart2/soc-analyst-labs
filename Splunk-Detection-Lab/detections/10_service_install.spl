@@ -1,0 +1,9 @@
+# Detection: New Service Installation
+# MITRE ATT&CK: T1543.003 - Create or Modify System Process: Windows Service
+# Severity: High
+# Data Source: Windows Security (Event ID 7045) or Sysmon (Event ID 4)
+
+index=wineventlog EventCode=7045
+| table _time, host, ServiceName, ServiceFileName, Account_Name
+| eval severity="high"
+| eval mitre_technique="T1543.003"

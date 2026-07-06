@@ -1,0 +1,10 @@
+# Detection: Encoded PowerShell Command
+# MITRE ATT&CK: T1059.001 - PowerShell
+# Severity: High
+# Data Source: Sysmon (Event ID 1)
+
+index=sysmon EventCode=1 Image="*\\powershell.exe"
+  (CommandLine="*-enc*" OR CommandLine="*-EncodedCommand*" OR CommandLine="*FromBase64String*")
+| table _time, host, User, CommandLine, ParentImage
+| eval severity="high"
+| eval mitre_technique="T1059.001"

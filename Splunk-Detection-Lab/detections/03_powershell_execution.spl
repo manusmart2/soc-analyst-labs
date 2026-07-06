@@ -1,0 +1,10 @@
+# Detection: PowerShell Execution
+# MITRE ATT&CK: T1059.001 - PowerShell
+# Severity: Medium
+# Data Source: Sysmon (Event ID 1) or Windows Security (Event ID 4688)
+
+index=sysmon EventCode=1 Image="*\\powershell.exe"
+| stats count AS executions BY host, User, CommandLine
+| eval severity="medium"
+| eval mitre_technique="T1059.001"
+| table _time, host, User, CommandLine, executions, severity, mitre_technique

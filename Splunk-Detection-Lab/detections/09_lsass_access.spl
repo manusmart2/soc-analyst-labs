@@ -1,0 +1,9 @@
+# Detection: Credential Dumping - LSASS Memory Access
+# MITRE ATT&CK: T1003.001 - OS Credential Dumping: LSASS Memory
+# Severity: Critical
+# Data Source: Sysmon (Event ID 10 - Process Access)
+
+index=sysmon EventCode=10 TargetImage="*\\lsass.exe"
+| table _time, host, SourceImage, GrantedAccess, CallTrace
+| eval severity="critical"
+| eval mitre_technique="T1003.001"

@@ -1,0 +1,12 @@
+# Detection: Suspicious Process Execution
+# MITRE ATT&CK: T1204 - User Execution
+# Severity: Medium
+# Data Source: Sysmon (Event ID 1)
+
+index=sysmon EventCode=1
+  (Image="*\\cmd.exe" OR Image="*\\wscript.exe" OR Image="*\\cscript.exe"
+   OR Image="*\\mshta.exe" OR Image="*\\regsvr32.exe" OR Image="*\\rundll32.exe")
+| where NOT match(ParentImage, "(?i)(explorer|svchost|services)")
+| table _time, host, User, Image, CommandLine, ParentImage
+| eval severity="medium"
+| eval mitre_technique="T1204"

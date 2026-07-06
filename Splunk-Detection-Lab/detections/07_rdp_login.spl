@@ -1,0 +1,9 @@
+# Detection: RDP Login (Remote Interactive Logon)
+# MITRE ATT&CK: T1021.001 - Remote Desktop Protocol
+# Severity: Medium
+# Data Source: Windows Security Event Log (Event ID 4624, Logon Type 10)
+
+index=wineventlog EventCode=4624 Logon_Type=10
+| table _time, host, Account_Name, src_ip, Logon_Type, Authentication_Package
+| eval severity="medium"
+| eval mitre_technique="T1021.001"

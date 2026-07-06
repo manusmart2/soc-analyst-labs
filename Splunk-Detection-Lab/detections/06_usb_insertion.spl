@@ -1,0 +1,12 @@
+# Detection: USB Device Insertion
+# MITRE ATT&CK: T1091 - Replication Through Removable Media
+# Severity: Low
+# Data Source: Sysmon (Event ID 6 - Driver loaded) or Event ID 6416
+
+index=wineventlog EventCode=6416
+| table _time, host, DeviceDescription, DeviceClass, DeviceId
+| eval severity="low"
+| eval mitre_technique="T1091"
+
+# Alternative using Sysmon:
+# index=sysmon EventCode=6 DeviceDescription="*USB*"

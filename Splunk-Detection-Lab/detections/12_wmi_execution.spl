@@ -1,0 +1,9 @@
+# Detection: WMI Process Creation
+# MITRE ATT&CK: T1047 - Windows Management Instrumentation
+# Severity: Medium
+# Data Source: Sysmon (Event ID 1) with wmiprvse parent
+
+index=sysmon EventCode=1 ParentImage="*\\WmiPrvSE.exe"
+| table _time, host, User, Image, CommandLine, ParentImage
+| eval severity="medium"
+| eval mitre_technique="T1047"

@@ -1,0 +1,12 @@
+# Detection: Brute Force Attack (Rapid Failed Logins)
+# MITRE ATT&CK: T1110.001 - Password Guessing
+# Severity: High
+# Data Source: Windows Security Event Log (Event ID 4625)
+
+index=wineventlog EventCode=4625
+| bin _time span=5m
+| stats count AS attempts BY _time, host, Account_Name, src_ip
+| where attempts >= 10
+| eval severity="high"
+| eval mitre_technique="T1110.001"
+| table _time, host, Account_Name, src_ip, attempts, severity, mitre_technique
